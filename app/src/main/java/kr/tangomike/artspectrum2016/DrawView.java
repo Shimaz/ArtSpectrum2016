@@ -32,6 +32,7 @@ public class DrawView extends View {
     private int noteNum;
 
 
+    private boolean isDirty = false;
 
     public DrawView(Context c, int noteNum) {
         super(c);
@@ -117,6 +118,8 @@ public class DrawView extends View {
         float x = event.getX();
         float y = event.getY();
 
+        isDirty = true;
+
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 touch_start(x, y);
@@ -141,21 +144,22 @@ public class DrawView extends View {
 
     public void setNote(int noteNum){
 
+        isDirty = false;
 
         switch (noteNum){
             default:
-            case 1:
+            case 0:
                 noteBG = BitmapFactory.decodeResource(getResources(), R.drawable.note01);
                 noteMask = BitmapFactory.decodeResource(getResources(), R.drawable.postit1_mask);
                 break;
 
-            case 2:
+            case 1:
                 noteBG = BitmapFactory.decodeResource(getResources(), R.drawable.note02);
                 noteMask = BitmapFactory.decodeResource(getResources(), R.drawable.postit2_mask);
                 break;
 
 
-            case 3:
+            case 2:
                 noteBG = BitmapFactory.decodeResource(getResources(), R.drawable.note03);
                 noteMask = BitmapFactory.decodeResource(getResources(), R.drawable.postit3_mask);
                 break;
@@ -168,6 +172,10 @@ public class DrawView extends View {
         mCanvas.drawBitmap(noteMask, 0, 0, null);
         invalidate();
 
+    }
+
+    public boolean getDirty(){
+        return isDirty;
     }
 
 }

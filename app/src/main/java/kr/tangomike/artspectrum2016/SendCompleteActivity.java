@@ -29,8 +29,7 @@ public class SendCompleteActivity extends Activity {
 
 
                 finish();
-
-
+                overridePendingTransition(R.anim.fade_in_short, R.anim.fade_out_short);
 
             }
         });

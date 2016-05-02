@@ -4,6 +4,8 @@ android {
     compileSdkVersion 23
     buildToolsVersion "24.0.0 rc2"
 
+
+
     defaultConfig {
         applicationId "kr.tangomike.artspectrum2016"
         minSdkVersion 15
@@ -17,10 +19,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+
+
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.3.0'
 }
