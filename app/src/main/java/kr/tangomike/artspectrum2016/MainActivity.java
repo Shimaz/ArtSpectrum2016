@@ -163,10 +163,24 @@ public class MainActivity extends Activity {
             }
         });
 
-        btnSend.setX(306);
+        btnSend.setX(419);
         btnSend.setY(1056);
 
         rlMain.addView(btnSend);
+
+
+        Button btnReset = new Button(this);
+        btnReset.setX(191);
+        btnReset.setY(1056);
+        btnReset.setBackgroundResource(R.drawable.btn_reset);
+        btnReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dv.setNote(nowNote);
+
+            }
+        });
 
 
     }
@@ -238,8 +252,10 @@ public class MainActivity extends Activity {
             isLaunched = true;
 
         }catch(UnknownHostException e){
+            Toast.makeText(getApplicationContext(), "네트워크에 연결되어있지 않습니다.", Toast.LENGTH_SHORT).show();
             e.printStackTrace();;
         }catch(IOException e){
+            Toast.makeText(getApplicationContext(), "파일 생성에 오류가 있습니다.", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }catch(Exception e){
             e.printStackTrace();
