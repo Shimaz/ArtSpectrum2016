@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
 
     private ArrayList<ImageView> circleArray;
 
-    private static String LEEUM_IP = "192.168.0.132";
+    private static String LEEUM_IP = "192.168.0.84";
 
     private boolean isLaunched = false;
 
