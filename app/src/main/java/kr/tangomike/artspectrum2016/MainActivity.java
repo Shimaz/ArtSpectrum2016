@@ -93,9 +93,9 @@ public class MainActivity extends Activity {
 
                     ImageView iv = circleArray.get(i);
                     if(i  == nowNote){
-                        iv.setImageResource(R.drawable.sel_down);
-                    }else{
                         iv.setImageResource(R.drawable.sel_up);
+                    }else{
+                        iv.setImageResource(R.drawable.sel_down);
                     }
 
 
@@ -130,9 +130,9 @@ public class MainActivity extends Activity {
         for(int i = 0; i < 3; i++){
             ImageView iv = new ImageView(this);
             if(i == 0){
-                iv.setImageResource(R.drawable.sel_down);
-            }else{
                 iv.setImageResource(R.drawable.sel_up);
+            }else{
+                iv.setImageResource(R.drawable.sel_down);
             }
 
             iv.setX(306 + (i * 64));
@@ -181,6 +181,8 @@ public class MainActivity extends Activity {
 
             }
         });
+
+        rlMain.addView(btnReset);
 
 
     }
