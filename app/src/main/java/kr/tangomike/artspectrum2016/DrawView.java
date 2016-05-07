@@ -1,6 +1,8 @@
 package kr.tangomike.artspectrum2016;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -33,6 +35,7 @@ public class DrawView extends View {
 
 
     private boolean isDirty = false;
+
 
     public DrawView(Context c, int noteNum) {
         super(c);

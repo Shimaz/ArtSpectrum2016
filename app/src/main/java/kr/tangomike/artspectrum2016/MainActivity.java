@@ -6,7 +6,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.os.StrictMode;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -42,6 +45,12 @@ public class MainActivity extends Activity {
     private static String LEEUM_IP = "192.168.0.84";
 
     private boolean isLaunched = false;
+
+
+    private Handler mHandler;
+    private static final int RESET_TIME = 60;
+    private int tickTime = 0;
+    private boolean isTicking = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -184,6 +193,33 @@ public class MainActivity extends Activity {
 
         rlMain.addView(btnReset);
 
+        mHandler = new Handler(){
+
+            public void handleMessage(Message msg){
+
+
+                if(tickTime > RESET_TIME){
+
+                    tickTime = 0;
+                    Intent sendIntent = new Intent("shimaz.close");
+                    sendBroadcast(sendIntent);
+                    nowNote = 0;
+                    dv.setNote(nowNote);
+                    isTicking = false;
+
+                }else{
+                    tickTime++;
+                    mHandler.sendEmptyMessageDelayed(0, 1000);
+                    isTicking = true;
+
+
+                }
+
+
+            }
+
+        };
+
 
     }
 
@@ -210,6 +246,7 @@ public class MainActivity extends Activity {
         }
 
 //        requestHttp(tmpFile.getAbsolutePath());
+
 
 
 
@@ -282,6 +319,21 @@ public class MainActivity extends Activity {
         retVal = Bitmap.createBitmap(tmp, 90, 332, 600, 600);
 
         return retVal;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event){
+
+        tickTime = 0;
+
+        if(!isTicking) {
+            mHandler.sendEmptyMessage(0);
+            isTicking = true;
+        }
+
+        dv.onTouchEvent(event);
+
+        return true;
     }
 
 
