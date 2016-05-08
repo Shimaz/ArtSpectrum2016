@@ -60,6 +60,8 @@ public class DrawView extends View {
         mPaint.setStrokeJoin(Paint.Join.ROUND);
         mPaint.setStrokeCap(Paint.Cap.ROUND);
         mPaint.setStrokeWidth(5);
+
+
     }
 
     @Override
@@ -118,6 +120,9 @@ public class DrawView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+
+        ((MainActivity)context).startTick();
+
         float x = event.getX();
         float y = event.getY();
 

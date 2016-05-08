@@ -81,6 +81,8 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
 
+                startTick();
+
                 btn tag = (btn)v.getTag();
                 if(tag == btn.BTN_RIGHT){
 
@@ -159,6 +161,7 @@ public class MainActivity extends Activity {
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                tickTime = 0;
 
                 if(dv.getDirty()) {
 
@@ -186,6 +189,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
 
+                tickTime = 0;
                 dv.setNote(nowNote);
 
             }
@@ -197,15 +201,28 @@ public class MainActivity extends Activity {
 
             public void handleMessage(Message msg){
 
+                android.util.Log.i("shimaz", "" + tickTime);
 
                 if(tickTime > RESET_TIME){
 
+                    isTicking = false;
                     tickTime = 0;
                     Intent sendIntent = new Intent("shimaz.close");
                     sendBroadcast(sendIntent);
                     nowNote = 0;
                     dv.setNote(nowNote);
-                    isTicking = false;
+
+                    for(int i = 0; i < circleArray.size(); i++){
+
+                        ImageView iv = circleArray.get(i);
+                        if(i  == nowNote){
+                            iv.setImageResource(R.drawable.sel_up);
+                        }else{
+                            iv.setImageResource(R.drawable.sel_down);
+                        }
+
+
+                    }
 
                 }else{
                     tickTime++;
@@ -294,7 +311,7 @@ public class MainActivity extends Activity {
             Toast.makeText(getApplicationContext(), "네트워크에 연결되어있지 않습니다.", Toast.LENGTH_SHORT).show();
             e.printStackTrace();;
         }catch(IOException e){
-            Toast.makeText(getApplicationContext(), "파일 생성에 오류가 있습니다.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "네트워크에 연결되어있지 않습니다.", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }catch(Exception e){
             e.printStackTrace();
@@ -321,20 +338,16 @@ public class MainActivity extends Activity {
         return retVal;
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event){
 
+    public void startTick(){
         tickTime = 0;
-
-        if(!isTicking) {
-            mHandler.sendEmptyMessage(0);
+        if(!isTicking){
             isTicking = true;
+            mHandler.sendEmptyMessage(0);
         }
-
-        dv.onTouchEvent(event);
-
-        return true;
     }
+
+
 
 
     @Override
