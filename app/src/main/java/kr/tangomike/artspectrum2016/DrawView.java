@@ -152,18 +152,18 @@ public class DrawView extends View {
         switch (noteNum){
             default:
             case 0:
-                noteBG = BitmapFactory.decodeResource(getResources(), R.drawable.note01);
+                noteBG = BitmapFactory.decodeResource(getResources(), R.drawable.postit1);
                 noteMask = BitmapFactory.decodeResource(getResources(), R.drawable.postit1_mask);
                 break;
 
             case 1:
-                noteBG = BitmapFactory.decodeResource(getResources(), R.drawable.note02);
+                noteBG = BitmapFactory.decodeResource(getResources(), R.drawable.postit2);
                 noteMask = BitmapFactory.decodeResource(getResources(), R.drawable.postit2_mask);
                 break;
 
 
             case 2:
-                noteBG = BitmapFactory.decodeResource(getResources(), R.drawable.note03);
+                noteBG = BitmapFactory.decodeResource(getResources(), R.drawable.postit3);
                 noteMask = BitmapFactory.decodeResource(getResources(), R.drawable.postit3_mask);
                 break;
 
